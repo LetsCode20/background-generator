@@ -17,11 +17,20 @@ h2 {
   flex-direction: column;
 }
 
-.flex input {
+.inputs input {
   margin: 20px auto;
 }
 
-.flex p {
+.inputs input[type='color'] {
+  border: none;
+  background-color: none;
+}
+
+.inputs h3 {
+  margin-top: 30px;
+}
+
+.inputs p {
   font-size: 20px;
 }
 
@@ -31,13 +40,19 @@ h2 {
   height: 200px;
 }
 
-
 .css-result {
   margin: 20px auto;
 }
 
+.css-result h2 svg {
+  font-size: 25px;
+}
+
 .css-result p {
-  margin: 20px auto 60px;
   text-align: start;
   line-height: 2;
+}
+
+.css-result p:last-child {
+  margin-bottom: 20px;
 }

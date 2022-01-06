@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import './app.css';
+import CopyClipboard from './components/CopyClipboard/CopyClipboard.component';
+import GradientBackground from './components/GradientBackground/GradientBackground.component';
+import InputColor from './components/InputColor/InputColor.component';
+import InputRotation from './components/InputRotation/InputRotation.component';
 
 function App() {
-  const [color, setColor] = useState('#09c4dc');
-  const [rgb, setRgb] = useState('9, 196, 220');
-  const [color1, setColor1] = useState('#eaf6f3');
-  const [rgb1, setRgb1] = useState('234, 246, 243');
+  const [color1, setColor1] = useState('#09c4dc');
+  const [rgb1, setRgb1] = useState('9, 196, 220');
+  const [color2, setColor2] = useState('#eaf6f3');
+  const [rgb2, setRgb2] = useState('234, 246, 243');
   const [rotation, setRotation] = useState(0);
-  const [copySuccess, setCopySuccess] = useState('');
-
-  const handleChangeColor = (e) => {
-    setColor(e.target.value);
-    setRgb(hexToRgb(e.target.value));
-  };
 
   const handleChangeColor1 = (e) => {
     setColor1(e.target.value);
     setRgb1(hexToRgb(e.target.value));
+  };
+
+  const handleChangeColor2 = (e) => {
+    setColor2(e.target.value);
+    setRgb2(hexToRgb(e.target.value));
   };
 
   const handleChangeRotation = (e) => {
@@ -24,7 +27,6 @@ function App() {
   };
 
   // const copyToClipboard = () => {};
-
   const hexToRgb = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     if (result) {
@@ -39,53 +41,28 @@ function App() {
   return (
     <div className='app'>
       <h2>Background Generator</h2>
-
       <div className='flex inputs'>
-        <div>
-          <input type='color' value={color} onChange={handleChangeColor} />
-          <p>HEX: {color ? color : '#000000'}</p>
-          <p>RGB: {rgb ? `rgb(${rgb})` : ''}</p>
-        </div>
+        <InputColor
+          rgb={rgb1}
+          color={color1}
+          handleChangeColor={handleChangeColor1}
+        />
 
-        <div>
-          <input type='color' value={color1} onChange={handleChangeColor1} />
-          <p>HEX: {color1 ? color1 : '#000000'}</p>
-          <p>RGB: {rgb1 ? `rgb(${rgb1})` : ''}</p>
-        </div>
+        <InputColor
+          rgb={rgb2}
+          color={color2}
+          handleChangeColor={handleChangeColor2}
+        />
 
-        <div>
-          <input
-            type='range'
-            min='0'
-            max='360'
-            value={rotation}
-            onChange={handleChangeRotation}
-          />
-          <p>{rotation ? `${rotation}deg` : '0deg'}</p>
-        </div>
+        <InputRotation
+          rotation={rotation}
+          handleChangeRotation={handleChangeRotation}
+        />
       </div>
 
-      <div
-        className='flex result'
-        style={{
-          background: `linear-gradient(${rotation}deg, ${color} 0%, ${color1} 100%)`,
-        }}
-      ></div>
+      <GradientBackground rotation={rotation} color1={color1} color2={color2} />
 
-      <div
-        className='flex css-result'
-        onClick={navigator.clipboard.writeText('Copy this text to clipboard')}
-      >
-        <div>
-          <h2>Copy to clipboard</h2>
-          <p>
-            background: rgb({rgb});
-            <br />
-            background: linear-gradient({rotation}deg, rgb({rgb}) 0%, rgb({rgb1}
-            ) 100%)
-          </p>
-        </div>
-      </div>
+      <CopyClipboard rgb1={rgb1} rgb2={rgb2} rotation={rotation} />
     </div>
   );
 }

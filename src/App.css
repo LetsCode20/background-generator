@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Vujahday+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  background: rgb(211, 234, 238);
+  background: linear-gradient(215deg, rgba(211, 234, 238, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
 h2 {
   font-family: 'Vujahday Script', cursive;
   font-size: 35px;
@@ -10,11 +28,13 @@ h2 {
 .flex {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
-.inputs {
-  flex-direction: column;
+@media screen and (max-width: 767px) {
+  .flex {
+    flex-direction: column;
+  }
 }
 
 .inputs input {
@@ -23,7 +43,6 @@ h2 {
 
 .inputs input[type='color'] {
   border: none;
-  background-color: none;
 }
 
 .inputs h3 {
@@ -51,6 +70,7 @@ h2 {
 .css-result p {
   text-align: start;
   line-height: 2;
+  padding: 10px 20px;
 }
 
 .css-result p:last-child {

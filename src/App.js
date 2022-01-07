@@ -26,7 +26,6 @@ function App() {
     setRotation(e.target.value);
   };
 
-  // const copyToClipboard = () => {};
   const hexToRgb = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     if (result) {
@@ -45,13 +44,13 @@ function App() {
         <InputColor
           rgb={rgb1}
           color={color1}
-          handleChangeColor={handleChangeColor1}
+          handleChange={handleChangeColor1}
         />
 
         <InputColor
           rgb={rgb2}
           color={color2}
-          handleChangeColor={handleChangeColor2}
+          handleChange={handleChangeColor2}
         />
 
         <InputRotation
